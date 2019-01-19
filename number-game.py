@@ -13,6 +13,13 @@ import os
 # loop try again
 while True:
 
+    # loop get number prediction
+    while True:
+        n = int(input("The number of predictions that you want to guess:"))
+        if (n > 0):
+            break
+        continue
+
     # loop get minimum number
     while True:
         minimum = int(input("Enter the Number Minimum ---- > Minimum >= 0:"))
@@ -30,12 +37,14 @@ while True:
         break
 
     num = random.randint(minimum, maximum)
-    #print(num)
+    print(num)
 
-    while True:
+    flag = False
+    # loop number prediction
+    for _ in range(n):
         forcast = int(input("forecasting you from Number:"))
         if ( forcast == num ):
-            print("You won the game.")
+            flag = True
             break
         elif (forcast > num):
             print("random number < {}".format(forcast))
@@ -46,6 +55,11 @@ while True:
 
     # loop get [Y/N]
     while True:
+        if (flag):
+            print("You won the game.")
+        else:
+            print("You missed the game.")
+
         try_again = str(input("You want to play again[Y/N]:"))
         if ( try_again.lower() == "y"):
             os.system('cls' if (os.name == 'nt') else 'clear')
